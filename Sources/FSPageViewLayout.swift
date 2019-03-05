@@ -77,7 +77,19 @@ class FSPagerViewLayout: UICollectionViewLayout {
         self.scrollDirection = pagerView.scrollDirection
         self.leadingSpacing = self.scrollDirection == .horizontal ? (collectionView.frame.width-self.actualItemSize.width)*0.5 : (collectionView.frame.height-self.actualItemSize.height)*0.5
         self.itemSpacing = (self.scrollDirection == .horizontal ? self.actualItemSize.width : self.actualItemSize.height) + self.actualInteritemSpacing
-        
+
+        if let center = self.pagerView?.needCenter {
+
+            if !center {
+                if let spacing = self.pagerView?.interitemSpacing {
+                    self.leadingSpacing = spacing
+                } else {
+                    self.leadingSpacing = 20
+                }
+            }
+
+        }
+
         // Calculate and cache contentSize, rather than calculating each time
         self.contentSize = {
             let numberOfItems = self.numberOfItems*self.numberOfSections

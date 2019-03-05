@@ -191,7 +191,16 @@ open class FSPagerView: UIView,UICollectionViewDataSource,UICollectionViewDelega
             self.collectionViewLayout.forceInvalidate()
         }
     }
-    
+
+    /// Position of items
+    @IBInspectable
+    open var needCenter: Bool = true {
+        didSet {
+            self.setNeedsLayout()
+        }
+    }
+
+
     // MARK: - Public readonly-properties
     
     /// Returns whether the user has touched the content to initiate scrolling.
